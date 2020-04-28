@@ -12,7 +12,7 @@ identifiers generated in the input file, is printed. Identifiers are placed in t
 hashing function for fast searches.
 
 
-## How to use:
+## How to use
 1. Ensure that all test files and "tokenTable.txt" are in the same folder as the source file. 
 2. Compile and run the program in your favorite C IDE or from the command line. A command 
     prompt will appear for steps 2 and 3.
@@ -23,28 +23,27 @@ hashing function for fast searches.
     the name of the output file.
 
 The following constraints must be adhered to when testing.
-### Filenames:
-    - File names can be no more than 30 characters total.
-### Lines:
-    - Lines in a test program can be no longer than 80 characters (81 including the newline character).
-### Identifiers:
-    - Identifiers are alphanumeric strings of 12 or less characters that begin with a letter. A 
-        token can only be an identifier if its string does not match one in the "tokenTable.txt" file.
-### Symbol Table:
-    - There can be no more than 32 identifiers defined in a single input program. Any additional 
+### Filenames
+* File names can be no more than 30 characters total.
+### Lines
+* Lines in a test program can be no longer than 80 characters (81 including the newline character).
+### Identifiers
+* Identifiers are alphanumeric strings of 12 or less characters that begin with a letter. A token can only be an identifier if its string does not match one in the "tokenTable.txt" file.
+### Symbol Table
+* There can be no more than 32 identifiers defined in a single input program. Any additional 
         identifiers will not be added to the symbol table and will print an error in the output file.
-    - If an identifier is defined twice, it will only be added to the symbol table the first time 
+* If an identifier is defined twice, it will only be added to the symbol table the first time 
         and an error will be printed for subsequent definitions.
-    - Any identifier appearing before the BEGIN token will be added to the symbol table if it is not 
+* Any identifier appearing before the BEGIN token will be added to the symbol table if it is not 
         full and the identifier is not in the symbol table already.
-    - Any identifier appearing after the BEGIN token will be searched for in the symbol table. If it 
+* Any identifier appearing after the BEGIN token will be searched for in the symbol table. If it 
         is not found, an error will be printed to the output file.
-### Token Table:
-    - The included "tokenTable.txt" file must be present in the same folder as the executable file
+### Token Table
+* The included "tokenTable.txt" file must be present in the same folder as the executable file
         for this program to work properly. 
 
 
-## Sample Tests:
+## Sample Tests
 Several premade tests are included to test certain cases as follows.
 
 1. allTokens.txt - This file tests all 23 tokens in the "tokenTable.txt" file. The output should be 
