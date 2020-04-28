@@ -20,7 +20,8 @@ hashing function for fast searches.
     The output file will be stored in the same folder as the executable file. 
 4. The program will execute and store results in output file. If successful, a prompt will display 
     the name of the output file.
-
+    
+## Testing
 The following constraints must be adhered to when testing.
 ### Filenames
 * File names can be no more than 30 characters total.
