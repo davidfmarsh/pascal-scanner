@@ -1,0 +1,17 @@
+PROGRAM WHITESPACE
+VAR
+    ABC
+
+
+
+BEGIN
+
+
+
+
+ABC := 0
+
+
+
+
+END.

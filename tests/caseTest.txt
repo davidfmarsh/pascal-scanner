@@ -1,0 +1,8 @@
+PROGRAM CASE
+VAR
+    TEST, test, TeST 
+BEGIN
+    TEST := 1
+    test := 2
+    TeST := 3
+END.
