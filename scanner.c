@@ -1,7 +1,5 @@
 /*-----------------------------------------------------------------------------
-* David Marsh
-* Updated Simplified Pascal Scanner
-* April 27, 2020
+* Author: David Marsh
 * 
 * This program accepts as input a text file containing code in a simplified 
 * version of the Pascal language. The program tokenizes the code, assigns 
@@ -46,7 +44,7 @@ typedef struct
 
 typedef struct
 {
-    token token[TOKEN_TABLE_LENGTH];
+	token token[TOKEN_TABLE_LENGTH];
 } tokenTable;
 
 typedef struct
@@ -55,19 +53,16 @@ typedef struct
 } symbolTable;
 
 
-void addSymbol(token *currentToken, symbolTable *symTable, 
-			   int *symbolCount, FILE *outputFile);
+void addSymbol(token *currentToken, symbolTable *symTable, int *symbolCount, FILE *outputFile);
 void assignID(tokenTable *table, token *token);
 token buildToken(FILE *inputFile, line *currentLine, FILE *outputFile);
-void checkSymbol(token *currentToken, symbolTable *symTable, 
-				 bool *beginReached, int *symbolCount, FILE *outputFile);
+void checkSymbol(token *currentToken, symbolTable *symTable, bool *beginReached, int *symbolCount, FILE *outputFile);
 tokenTable constructTokenTable(char* tokenTableFilename);
 symbolTable constructSymbolTable();
 void formatLine(line *currentLine);
 int getHash(token *currentToken);
 void getNewLine(FILE *inputFile, line *currentLine);
-token getToken(FILE *inputFile, line *currentLine, 
-			   tokenTable *table, FILE *outputFile);
+token getToken(FILE *inputFile, line *currentLine, tokenTable *table, FILE *outputFile);
 void ignoreComment(FILE *inputFile, line *currentLine, FILE *outputFile);
 void printLine(FILE *outputFile, line *currentLine);
 void printSymbolTable(symbolTable *symTable, FILE *outputFile);
@@ -100,8 +95,7 @@ int main()
     * opens file, and returns an error 
     * if file couldn't be opened.
     */
-    printf("Enter name of input file to scan."
-           " (maximum of %d characters): ", MAX_FILENAME_LENGTH);
+    printf("Enter name of input file to scan. (maximum of %d characters): ", MAX_FILENAME_LENGTH);
     char inputFilename[MAX_FILENAME_LENGTH];
     scanf("%s", inputFilename);
 
@@ -116,8 +110,7 @@ int main()
     * opens file, and returns an error 
     * if file couldn't be opened.
     */
-    printf("\nEnter name of output file to store results,"
-           " (maximum of %d characters): ", MAX_FILENAME_LENGTH);
+    printf("\nEnter name of output file to store results, (maximum of %d characters): ", MAX_FILENAME_LENGTH);
     char outputFilename[MAX_FILENAME_LENGTH];
     scanf("%s", outputFilename);
 
@@ -140,11 +133,9 @@ int main()
     	* Check symbol determines whether the token needs to be added
     	* to the symbol table or searched for in the table. 
     	*/
-        token currentToken = getToken(inputFile, &currentLine, 
-										&table, outputFile);
+        token currentToken = getToken(inputFile, &currentLine, &table, outputFile);
         printToken(outputFile, &currentToken);
-        checkSymbol(&currentToken, &symTable, &beginReached, 
-					&symbolCount, outputFile);
+        checkSymbol(&currentToken, &symTable, &beginReached, &symbolCount, outputFile);
 	}
 	
 	printSymbolTable(&symTable, outputFile);
@@ -173,8 +164,7 @@ int main()
 *		next available spot.
 -----------------------------------------------------------------------------*/
 
-void addSymbol(token *currentToken, symbolTable *symTable, 
-			   int *symbolCount, FILE *outputFile)
+void addSymbol(token *currentToken, symbolTable *symTable, int *symbolCount, FILE *outputFile)
 {
 	bool duplicate = false;
 	int i = 0;
@@ -185,8 +175,7 @@ void addSymbol(token *currentToken, symbolTable *symTable,
 		if (strcmp(symTable->token[i].string, currentToken->string) == 0)
 		{
 			duplicate = true;
-			fprintf(outputFile, "\t\t*ERROR: TOKEN \"%s\" IS DECLARED TWICE\n",
-					currentToken->string);
+			fprintf(outputFile, "\t\t*ERROR: TOKEN \"%s\" IS DECLARED TWICE\n", currentToken->string);
 		}
 		
 		i = i + 1;
@@ -308,8 +297,7 @@ token buildToken(FILE *inputFile, line *currentLine, FILE *outputFile)
     while (stop != true)
     {
         /* Add first character that isn't ' ' or '\n' to token and increment.*/
-        newToken.string[newToken.index] = 
-            currentLine->string[currentLine->index];
+        newToken.string[newToken.index] = currentLine->string[currentLine->index];
 
         /* validate keywords and IDs */
         if (isalpha(currentLine->string[currentLine->index]))
@@ -423,8 +411,7 @@ token buildToken(FILE *inputFile, line *currentLine, FILE *outputFile)
 *		beginReached boolean is set to true.
 -----------------------------------------------------------------------------*/
 
-void checkSymbol(token *currentToken, symbolTable *symTable, 
-				 bool *beginReached, int *symbolCount, FILE *outputFile)
+void checkSymbol(token *currentToken, symbolTable *symTable, bool *beginReached, int *symbolCount, FILE *outputFile)
 {
 	/*
 	* If BEGIN token is found, mark beginReached as true
